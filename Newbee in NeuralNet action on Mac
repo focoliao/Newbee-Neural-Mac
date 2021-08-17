@@ -1,0 +1,59 @@
+本文用于Mac机器安装机器学习相关工具。
+
+1. 机器学习的范畴比较大，对于高位视频来说，更关注的是计算机视觉，而当前用的最多的，是神经网络，深度学习是深层神经网络。
+2. 从工具来说：
+	 - xcode是Mac上的开发工具。
+	 - python是我比较熟悉的编程语言。
+	 - opencv提供了众多计算机视觉软件库及相关API。
+	 - tensorflow是一个机器学习的训练框架。
+	 - keras是开源人工神经网络库。
+	 
+Mac软件安装步骤：
+这里基本是傻瓜式从无到有安装所需软件，也有一些相关实际示例。
+1. brew。全称Homebrew 是Mac OS上的软件包管理工具。Homebrew安装和卸载工具，只用一行命令就能完成，比较方便。类似于centos下的yum或者ubuntu下的apt-get。
+	 Mac自带ruby，使用ruby命令（注意，安装和卸载，都需要连接github，有可能被盾）：
+	 - 安装brew：/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	 - 卸载brew：/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+	 
+	 解释：（1）安装brew后，会创建/usr/local/Cellar文件夹，通过brew安装的程序会在这个文件夹中。（2）如果卸载了brew再重新安装，最好按照卸载时的提示，把一些文件夹删除，否则会影响再次安装。
+
+2. 安装Xcode：
+	 Xcode的安装就比较方便了。直接在AppStore中搜索，安装即可。
+	 
+3. 安装python3：
+	 Mac自带python2.7，而且这个版本不好卸载（截止到macOS Big Sur 11.1依然如此）。我们可以用brew来安装phthon3。
+	 - 在终端上输入：brew search python3。会提示搜索到的python3版本。
+	 - 在终端上输入：brew install python@3.9，即可安装。
+	 
+	 注意：Xcode安装之后，会在/usr/bin下安装一个python3的可执行文件。这个python3只是个桩(stub)，而它的指向受到Xcode的影响（暂时还没找到从哪里指，打开之后是3.8.2版本的python）。
+	      不会受到brew安装的python版本及其用pip安装的一些包的影响，这就导致一个问题：
+	      如果在Xcode的build configuration中配置为这个python3可执行文件，则会导致找不到pip安装的包。所以在Xcode配置中，需要找到python3.9的可执行文件。
+				
+				
+4. 安装pip：
+	 Mac自带python2.7，所以要注意使用python3去安装pip
+	 - 终端上输入：curl https://bootstrap.pypa.io/get-pip.py | python3
+	 
+5. 安装opencv及实践：
+	 安装opencv，使用其中的计算机视觉库。我们已经安装了pip，安装起来就不要太简单了：
+	 - 终端上输入：pip3 install opencv-python。会安装opencv，以及numpy。
+	 有了以上内容之后，就可以实践了。
+	 - 实践见：https://github.com/focoliao/yolov3D。使用opencv自带的yolo算法进行物体检测。
+	 注意：需要在项目的文件夹内运行终端，readme.cfg中有终端中输入的指令说明。
+
+6. 安装tensorflow及利用keras实践：
+	 安装tensorflow也很简单：
+	 - 终端上输入：pip3 install tensorflow。即可安装。tensorflow自带keras。用同样的方法，可以安装matplotlib
+	 有了以上内容之后，就可以实践训练算法了。
+	 - 实践见：https://github.com/focoliao/neuralTest
+	 注意：（1）由于使用Xcode需要调用python等，需要给权限。在系统偏好设置里设置即可。
+	      （2）至今为止，Xcode使用python的断点调试还是没搞定。
+        
+7. 使用github：
+	 github使用很简单，注册一个即可。麻烦的是翻墙。
+
+8. 安装github desktop：
+	 安装github desktop，便于管理程序。
+	 - 上网，https://desktop.github.com/，下载，安装即可。
+
+9. 使用吧
